@@ -12,9 +12,24 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            buildConfigField("String", "URL", '"www.baidu.com"')
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            buildConfigField("String", "URL", '"www.google.com"')
+        }
+    }
+
+    productFlavors {
+        seller {
+            buildConfigField("String", "URL", '"www.baidu.com"')
+        }
+        origin{
+            buildConfigField("String", "URL", '"www.google.com"')
         }
     }
 }
@@ -25,6 +40,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
+//    sellerCompile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
